@@ -4,21 +4,20 @@
 #include <vector>
 
 #include "process.h"
-
-struct Processor {};
+#include "processor.h"
 
 class System {
- public:
-  Processor& Cpu();
-  std::vector<Process>& Processes();
-  float MemoryUtilization();
-  long UpTime();
-  int TotalProcesses();
-  int RunningProcesses();
-  std::string Kernel();
-  std::string OperatingSystem();
+   public:
+    Processor& Cpu();
+    std::vector<Process>& Processes();
+    float MemoryUtilization();
+    long UpTime();
+    int TotalProcesses();
+    int RunningProcesses();
+    std::string Kernel();
+    std::string OperatingSystem();
 
- private:
-  Processor cpu_ = {};
-  std::vector<Process> processes_ = {};
+   private:
+    Processor cpu_ = {};
+    std::vector<Process> processes_ = {};
 };
