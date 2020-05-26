@@ -10,11 +10,11 @@ Processor& System::Cpu() { return cpu_; }
 
 std::vector<Process>& System::Processes() { return processes_; }
 
-std::string System::Kernel() { return "KERN"; }
+std::string System::Kernel() { return LinuxParser::Kernel(); }
 
 float System::MemoryUtilization() { return 0.0; }
 
-std::string System::OperatingSystem() { return std::string(); }
+std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }
 
 int System::RunningProcesses() { return 0; }
 

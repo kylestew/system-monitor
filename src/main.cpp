@@ -2,14 +2,15 @@
 #include "system.h"
 
 #include <iostream>
+#include "format.h"
 #include "linux_parser.h"
 
 int main() {
     System system;
 
-    // std::cout << system.UpTime() << std::endl;
+    // std::cout << LinuxParser::OperatingSystem() << std::endl;
 
-    // std::cout << LinuxParser::UpTime() << std::endl;
+    // std::cout << Format::ElapsedTime(LinuxParser::UpTime()) << std::endl;
 
     NCursesDisplay::Display(system);
 }
