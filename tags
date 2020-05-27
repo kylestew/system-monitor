@@ -320,6 +320,7 @@ COMPILER_VERSION_TWEAK	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.
 COMPILER_VERSION_TWEAK	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	213;"	d	file:
 COMPILER_VERSION_TWEAK	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	265;"	d	file:
 COMPILER_VERSION_TWEAK	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	36;"	d	file:
+CPUStates	include/linux_parser.h	/^enum CPUStates {$/;"	g	namespace:LinuxParser
 CXX_STD	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	608;"	d	file:
 CXX_STD	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	610;"	d	file:
 CXX_STD	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	613;"	d	file:
@@ -342,12 +343,13 @@ Format	include/format.h	/^namespace Format {$/;"	n
 HEX	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	555;"	d	file:
 HEX	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	540;"	d	file:
 ID_VOID_MAIN	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	6;"	d	file:
-Kernel	src/linux_parser.cpp	/^std::string LinuxParser::Kernel() { return string(); }$/;"	f	class:LinuxParser
+Kernel	src/linux_parser.cpp	/^std::string LinuxParser::Kernel() {$/;"	f	class:LinuxParser
 Kernel	src/system.cpp	/^std::string System::Kernel() { return LinuxParser::Kernel(); }$/;"	f	class:System
 LinuxParser	include/linux_parser.h	/^namespace LinuxParser {$/;"	n
-MemoryUtilization	src/system.cpp	/^float System::MemoryUtilization() { return 0.0; }$/;"	f	class:System
+MemoryUtilization	src/linux_parser.cpp	/^float LinuxParser::MemoryUtilization() {$/;"	f	class:LinuxParser
+MemoryUtilization	src/system.cpp	/^float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }$/;"	f	class:System
 NCursesDisplay	include/ncurses_display.h	/^namespace NCursesDisplay {$/;"	n
-OperatingSystem	src/linux_parser.cpp	/^std::string LinuxParser::OperatingSystem() { return string(); }$/;"	f	class:LinuxParser
+OperatingSystem	src/linux_parser.cpp	/^std::string LinuxParser::OperatingSystem() {$/;"	f	class:LinuxParser
 OperatingSystem	src/system.cpp	/^std::string System::OperatingSystem() { return LinuxParser::OperatingSystem(); }$/;"	f	class:System
 PLATFORM_ID	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	339;"	d	file:
 PLATFORM_ID	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	342;"	d	file:
@@ -418,7 +420,8 @@ Processes	src/system.cpp	/^std::vector<Process>& System::Processes() { return pr
 Processor	include/processor.h	/^class Processor {$/;"	c
 ProgressBar	src/ncurses_display.cpp	/^std::string NCursesDisplay::ProgressBar(float percent) {$/;"	f	class:NCursesDisplay
 RM	build/Makefile	/^RM = \/usr\/local\/bin\/cmake -E rm -f$/;"	m
-RunningProcesses	src/system.cpp	/^int System::RunningProcesses() { return 0; }$/;"	f	class:System
+RunningProcesses	src/linux_parser.cpp	/^int LinuxParser::RunningProcesses() {$/;"	f	class:LinuxParser
+RunningProcesses	src/system.cpp	/^int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }$/;"	f	class:System
 SHELL	build/Makefile	/^SHELL = \/bin\/sh$/;"	m
 SIMULATE_ID	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	209;"	d	file:
 SIMULATE_ID	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	21;"	d	file:
@@ -453,9 +456,10 @@ STRINGIFY	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	320;"	d	f
 STRINGIFY_HELPER	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	334;"	d	file:
 STRINGIFY_HELPER	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	319;"	d	file:
 System	include/system.h	/^class System {$/;"	c
-TotalProcesses	src/system.cpp	/^int System::TotalProcesses() { return 0; }$/;"	f	class:System
+TotalProcesses	src/linux_parser.cpp	/^int LinuxParser::TotalProcesses() {$/;"	f	class:LinuxParser
+TotalProcesses	src/system.cpp	/^int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }$/;"	f	class:System
 UpTime	src/linux_parser.cpp	/^long LinuxParser::UpTime() {$/;"	f	class:LinuxParser
-UpTime	src/system.cpp	/^long int System::UpTime() { LinuxParser::UpTime(); }$/;"	f	class:System
+UpTime	src/system.cpp	/^long int System::UpTime() { return LinuxParser::UpTime(); }$/;"	f	class:System
 Utilization	src/processor.cpp	/^float Processor::Utilization() { return 0.0; }$/;"	f	class:Processor
 const	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	10;"	d	file:
 cpu_	include/system.h	/^    Processor cpu_ = {};$/;"	m	class:System
@@ -477,6 +481,16 @@ info_version	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	/^char const
 info_version	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v
 info_version_internal	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
 info_version_internal	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
+kGuestNice_	include/linux_parser.h	/^    kGuestNice_$/;"	e	enum:LinuxParser::CPUStates
+kGuest_	include/linux_parser.h	/^    kGuest_,$/;"	e	enum:LinuxParser::CPUStates
+kIOwait_	include/linux_parser.h	/^    kIOwait_,$/;"	e	enum:LinuxParser::CPUStates
+kIRQ_	include/linux_parser.h	/^    kIRQ_,$/;"	e	enum:LinuxParser::CPUStates
+kIdle_	include/linux_parser.h	/^    kIdle_,$/;"	e	enum:LinuxParser::CPUStates
+kNice_	include/linux_parser.h	/^    kNice_,$/;"	e	enum:LinuxParser::CPUStates
+kSoftIRQ_	include/linux_parser.h	/^    kSoftIRQ_,$/;"	e	enum:LinuxParser::CPUStates
+kSteal_	include/linux_parser.h	/^    kSteal_,$/;"	e	enum:LinuxParser::CPUStates
+kSystem_	include/linux_parser.h	/^    kSystem_,$/;"	e	enum:LinuxParser::CPUStates
+kUser_	include/linux_parser.h	/^    kUser_ = 0,$/;"	e	enum:LinuxParser::CPUStates
 main	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
 main	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
 main	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f
@@ -484,4 +498,5 @@ main	src/main.cpp	/^int main() {$/;"	f
 processes_	include/system.h	/^    std::vector<Process> processes_ = {};$/;"	m	class:System
 qnxnto	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
 qnxnto	build/CMakeFiles/3.17.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
+readKeyFromFile	src/linux_parser.cpp	/^int readKeyFromFile(string key, string file) {$/;"	f
 volatile	build/CMakeFiles/3.17.2/CompilerIdC/CMakeCCompilerId.c	11;"	d	file:

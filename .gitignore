@@ -4,3 +4,7 @@ settings.json
 *.o
 build/*
 *.json
+
+tags
+
+valgrind-out.txt
