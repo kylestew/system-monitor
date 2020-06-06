@@ -7,10 +7,10 @@ public:
     Process(int pid) : pid(pid) {}
     std::string User();
     std::string Command();
-    float CpuUtilization();
+    float CpuUtilization() const;
     std::string Ram();
     long int UpTime();
-    bool operator<(Process const& a) const;
+    bool operator<(const Process& rhs) const;
 
     int pid;
 

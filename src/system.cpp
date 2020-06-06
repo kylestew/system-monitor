@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -14,7 +15,8 @@ std::vector<Process>& System::Processes() {
         processes_.push_back(Process(pid));
     }
 
-    // TODO: sort by CPUUtilization() using the < operator
+    // sort by CPUUtilization() using the < operator
+    std::sort(processes_.begin(), processes_.end());
 
     return processes_;
 }

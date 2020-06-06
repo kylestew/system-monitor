@@ -152,3 +152,56 @@ LinuxParser::CPUState LinuxParser::CpuUtilization() {
     }
     return state;
 }
+
+// == Process ==
+
+// Read and return the user ID associated with a process
+string LinuxParser::Uid(int pid) {
+    string line, key, value;
+    std::ifstream stream(kProcDirectory + "/" + std::to_string(pid) + "/" + kStatusFilename);
+    if (stream.is_open()) {
+        // search for the line we need
+        while (std::getline(stream, line)) {
+            // make line easier to parse
+            std::replace(line.begin(), line.end(), ':', ' ');
+
+            std::istringstream linestream(line);
+            while (linestream >> key >> value) {
+                if (key == "Uid") {
+                    // found it!
+
+                    // undo parse helper
+                    return value;
+                }
+            }
+        }
+    }
+    return "not found";
+}
+
+// Read and return the user associated with a process
+string LinuxParser::User(int pid) {
+    // TODO: go lookup user
+    return LinuxParser::Uid(pid);
+}
+
+long int LinuxParser::UpTime(int pid) { return 0; }
+
+LinuxParser::ProcTime LinuxParser::ProcessTime(int pid) {
+    std::ifstream stream(kProcDirectory + "/" + std::to_string(pid) + "/" + kStatFilename);
+    LinuxParser::ProcTime time;
+    string line, skip;
+    if (stream.is_open()) {
+        while (std::getline(stream, line)) {
+            std::istringstream linestream(line);
+
+            linestream >> skip >> skip >> skip >> skip >> skip >> skip >> skip >> skip >> skip >>
+                skip >> skip >> skip >> skip >> time.utime >> time.stime >> time.cutime >>
+                time.cstime >> skip >> skip >> skip >> skip >> time.starttime;
+
+            break;
+        }
+    }
+    return time;
+}
+
