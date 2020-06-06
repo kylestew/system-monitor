@@ -104,3 +104,26 @@ std::string LinuxParser::Kernel() {
     }
     return kernel;
 }
+
+// == Processor ==
+LinuxParser::CPUState LinuxParser::CpuUtilization() {
+    std::ifstream stream(kProcDirectory + kStatFilename);
+    CPUState state;
+    string line, key;
+    if (stream.is_open()) {
+        while (std::getline(stream, line)) {
+            std::istringstream linestream(line);
+            if (linestream >> key) {
+                if (key == "cpu") {
+                    linestream >> state.user >> state.nice >> state.system >>
+                        state.idle >> state.io_wait >> state.irq >>
+                        state.soft_irq >> state.steal >> state.guest >>
+                        state.guest_nice;
+
+                    break;
+                }
+            }
+        }
+    }
+    return state;
+}

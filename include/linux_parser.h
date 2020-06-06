@@ -23,20 +23,21 @@ std::string OperatingSystem();
 std::string Kernel();
 
 // CPU
-enum CPUStates {
-    kUser_ = 0,
-    kNice_,
-    kSystem_,
-    kIdle_,
-    kIOwait_,
-    kIRQ_,
-    kSoftIRQ_,
-    kSteal_,
-    kGuest_,
-    kGuestNice_
+struct CPUState {
+    long user;
+    long nice;
+    long system;
+    long idle;
+    long io_wait;
+    long irq;
+    long soft_irq;
+    long steal;
+    long guest;
+    long guest_nice;
 };
-std::vector<std::string> CpuUtilization();
+CPUState CpuUtilization();
 
 // Processes
+std::string Command(int pid);
 // ...
 };  // namespace LinuxParser

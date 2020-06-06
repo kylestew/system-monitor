@@ -59,10 +59,30 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
 void NCursesDisplay::DisplayProcess(std::vector<Process>& processes,
                                     WINDOW* window, int n) {
     int row{0};
-
     int const pid_column{2};
+    int const user_column{2};
+    int const cpu_column{16};
+    int const ram_column{26};
+    int const time_column{35};
+    int const command_column{46};
 
+    // column titles
+    wattron(window, COLOR_PAIR(2));
     mvwprintw(window, ++row, pid_column, "PID");
+    mvwprintw(window, row, user_column, "USER");
+    mvwprintw(window, row, cpu_column, "CPU[%%]");
+    mvwprintw(window, row, ram_column, "RAM[MB]");
+    mvwprintw(window, row, time_column, "TIME+");
+    mvwprintw(window, row, command_column, "COMMAND");
+    wattroff(window, COLOR_PAIR(2));
+
+    // process rows
+    for (int i = 0; i < n; ++i) {
+        mvwprintw(window, ++row, pid_column,
+                  to_string(processes[i].Pid()).c_str());
+        mvwprintw(window, row, user_column, processes[i].User().c_str());
+        float cpu = processes[i].CpuUtilization() * 100;
+    }
 }
 
 void NCursesDisplay::Display(System& system, int n) {
@@ -84,13 +104,15 @@ void NCursesDisplay::Display(System& system, int n) {
         init_pair(1, COLOR_BLUE, COLOR_BLACK);
         init_pair(2, COLOR_GREEN, COLOR_BLACK);
 
-        // draw border on window
+        // draw border on windows
         box(system_window, 0, 0);
         box(process_window, 0, 0);
 
         DisplaySystem(system, system_window);
+        DisplayProcesses(system.Processes(), process_window, n);
 
         wrefresh(system_window);
+        wrefresh(process_window);
         refresh();
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
