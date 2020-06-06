@@ -8,7 +8,16 @@
 
 Processor& System::Cpu() { return cpu_; }
 
-std::vector<Process>& System::Processes() { return processes_; }
+std::vector<Process>& System::Processes() {
+    processes_.clear();
+    for (auto pid : LinuxParser::Pids()) {
+        processes_.push_back(Process(pid));
+    }
+
+    // TODO: sort by CPUUtilization() using the < operator
+
+    return processes_;
+}
 
 std::string System::Kernel() { return LinuxParser::Kernel(); }
 

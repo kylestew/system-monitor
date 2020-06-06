@@ -1,11 +1,14 @@
+#include <dirent.h>
 #include <iostream>
 #include <regex>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include "linux_parser.h"
 
 using std::string;
+using std::vector;
 
 // == System ==
 
@@ -32,6 +35,29 @@ float LinuxParser::MemoryUtilization() {
     }
 
     return (float)(total - free) / (float)total;
+}
+
+// TODO: update this to use std::filesystem
+/*
+ * Looks up procs in /proc based on weak assumption they are only dirs with numbers
+ */
+vector<int> LinuxParser::Pids() {
+    vector<int> pids;
+    DIR* directory = opendir(kProcDirectory.c_str());
+    struct dirent* file;
+    while ((file = readdir(directory)) != nullptr) {
+        // is this a directory?
+        if (file->d_type == DT_DIR) {
+            // is every character of the name a digit?
+            string filename(file->d_name);
+            if (std::all_of(filename.begin(), filename.end(), isdigit)) {
+                int pid = stoi(filename);
+                pids.push_back(pid);
+            }
+        }
+    }
+    closedir(directory);
+    return pids;
 }
 
 long LinuxParser::UpTime() {
@@ -115,10 +141,9 @@ LinuxParser::CPUState LinuxParser::CpuUtilization() {
             std::istringstream linestream(line);
             if (linestream >> key) {
                 if (key == "cpu") {
-                    linestream >> state.user >> state.nice >> state.system >>
-                        state.idle >> state.io_wait >> state.irq >>
-                        state.soft_irq >> state.steal >> state.guest >>
-                        state.guest_nice;
+                    linestream >> state.user >> state.nice >> state.system >> state.idle >>
+                        state.io_wait >> state.irq >> state.soft_irq >> state.steal >>
+                        state.guest >> state.guest_nice;
 
                     break;
                 }

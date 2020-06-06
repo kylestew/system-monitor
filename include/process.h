@@ -3,14 +3,16 @@
 #include <string>
 
 class Process {
-    public:
-        int Pid();
-        std::string User();
-        std::string Command();
-        float CpuUtilization();
-        std::string Ram();
-        long int UpTime();
-        bool operator<(Process const &a) const;
+public:
+    Process(int pid) : pid(pid) {}
+    std::string User();
+    std::string Command();
+    float CpuUtilization();
+    std::string Ram();
+    long int UpTime();
+    bool operator<(Process const& a) const;
 
-    private:
+    int pid;
+
+private:
 };

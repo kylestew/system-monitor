@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <string>
+#include <vector>
 
 namespace LinuxParser {
 // Paths
@@ -16,7 +17,7 @@ const std::string kOSPath{"/etc/os-release"};
 // System
 float MemoryUtilization();
 long UpTime();
-// std::vector<int> Pids();
+std::vector<int> Pids();
 int TotalProcesses();
 int RunningProcesses();
 std::string OperatingSystem();
@@ -39,5 +40,8 @@ CPUState CpuUtilization();
 
 // Processes
 std::string Command(int pid);
-// ...
+std::string Ram(int pid);
+std::string Uid(int pid);
+std::string User(int pid);
+long int UpTime(int pid);
 };  // namespace LinuxParser
